@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-onyx-950 text-ivory font-body antialiased;
+}
+
+::selection {
+  @apply bg-gold-400/30 text-gold-100;
+}
+
+/* Custom scrollbar for the premium feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d10;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e2a92f, #a86f18);
+  border-radius: 999px;
+}
+
+@layer components {
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-6 py-3
+      font-body font-semibold text-onyx-950 shadow-gold transition-transform duration-200
+      hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold-400/50
+      px-6 py-3 font-body font-semibold text-gold-200 transition-all duration-200
+      hover:bg-gold-400/10 hover:border-gold-300 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-white/10 bg-onyx-800/80 px-4 py-3 text-sm text-ivory
+      placeholder:text-white/30 outline-none transition-colors duration-200
+      focus:border-gold-400 focus:ring-1 focus:ring-gold-400/50;
+  }
+
+  .label-field {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gold-200/80;
+  }
+
+  .card-panel {
+    @apply rounded-2xl border border-white/10 bg-onyx-800/60 backdrop-blur-sm shadow-xl;
+  }
+
+  .divider-gold {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold-400/60 to-transparent;
+  }
+}
