@@ -1,8 +1,16 @@
 const multer = require('multer');
 const path = require('path');
+const os = require('os');
 const fs = require('fs');
 
-const uploadDir = path.join(__dirname, '..', 'uploads', 'nominees');
+// Vercel's filesystem is read-only except the OS temp folder — and even
+// that isn't shared or kept between requests. So on Vercel we point uploads
+// at a temp folder (so the app doesn't crash on startup); locally / on a
+// traditional host it uses the real uploads folder.
+const uploadDir = process.env.VERCEL
+  ? path.join(os.tmpdir(), 'uploads', 'nominees')
+  : path.join(__dirname, '..', 'uploads', 'nominees');
+
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
